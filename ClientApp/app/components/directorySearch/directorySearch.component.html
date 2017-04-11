@@ -1,0 +1,28 @@
+﻿<div class="container">
+    <h2 *ngIf="errorMessage" style="color:red">{{errorMesssage}}</h2>
+    <div *ngIf="!isFTPConnected">
+        <h2>FTP Connect</h2>
+        <div class="form-group">
+            <label for="email">IP Adress:</label>
+            <input #email type="email" class="form-control" id="email" placeholder="Enter IP">
+        </div>
+        <div class="form-group">
+            <label for="user">User:</label>
+            <input #user type="text" class="form-control" id="user" placeholder="Enter User Name">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input #password type="password" class="form-control" id="pwd" placeholder="Enter password">
+        </div>
+        <button class="btn btn-default" (click)="ftpConnect(email.value, user.value, password.value)">Connect</button>
+    </div>
+
+    <div>
+        <div class="form-group" *ngIf="isFTPConnected">
+            <label>Log:</label>
+            <ul>
+                <li *ngFor="let message of messages; let i = index; trackBy: trackByFn">{{message}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
